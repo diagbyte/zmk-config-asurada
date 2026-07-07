@@ -2,10 +2,22 @@ manifest:
   remotes:
     - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
+    - name: badjeff
+      url-base: https://github.com/badjeff
+    - name: diagbyte
+      url-base: https://github.com/diagbyte
   projects:
     - name: zmk
       remote: zmkfirmware
       revision: main
       import: app/west.yml
+    # PMW3610 optical sensor driver for the Adept trackball (BLE mod)
+    - name: zmk-pmw3610-driver
+      remote: badjeff
+      revision: main
+    # Asurada dongle display module (GC9A01 + CST816S + status screen)
+    - name: asurada_dongle
+      remote: diagbyte
+      revision: main
   self:
     path: config

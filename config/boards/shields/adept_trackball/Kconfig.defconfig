@@ -1,0 +1,17 @@
+if SHIELD_ADEPT_TRACKBALL
+
+config ZMK_KEYBOARD_NAME
+    default "Adept TB"
+
+# Split peripheral (no ROLE_CENTRAL -> peripheral). The dongle is central.
+config ZMK_SPLIT
+    default y
+
+# Pointing subsystem is needed on the peripheral (sensor side).
+config ZMK_POINTING
+    default y
+
+endif
+
+config SPI
+    default y if SHIELD_ADEPT_TRACKBALL

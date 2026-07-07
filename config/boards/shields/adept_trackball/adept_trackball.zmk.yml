@@ -1,0 +1,8 @@
+file_format: "1"
+id: adept_trackball
+name: Adept Trackball (peripheral)
+type: shield
+url: https://github.com/taichan1113/AdeptBLE
+requires: [seeed_xiao]
+features:
+  - pointer
