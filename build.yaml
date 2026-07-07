@@ -16,3 +16,8 @@ include:
   - board: xiao_ble//zmk
     shield: adept_trackball
     artifact-name: adept_trackball
+  # Flash this to any XIAO to wipe old BLE bonds/settings, then flash the real
+  # firmware. Needed once when moving to the dongle topology.
+  - board: xiao_ble//zmk
+    shield: settings_reset
+    artifact-name: settings_reset

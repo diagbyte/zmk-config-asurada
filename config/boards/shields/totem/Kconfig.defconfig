@@ -11,6 +11,13 @@ config ZMK_KEYBOARD_NAME
 config ZMK_SPLIT
     default y
 
+# The shared totem keymap references &mkp (trackball buttons, bound on the
+# central). Split peripherals still compile the keymap, so the pointing
+# behaviors must resolve here too, or the totem_left/right devicetree build
+# fails on an undefined &mkp phandle. No pointing hardware runs on the halves.
+config ZMK_POINTING
+    default y
+
 endif
 
 if SHIELD_TOTEM_DONGLE
