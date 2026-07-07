@@ -12,6 +12,3 @@ config ZMK_POINTING
     default y
 
 endif
-
-config SPI
-    default y if SHIELD_ADEPT_TRACKBALL

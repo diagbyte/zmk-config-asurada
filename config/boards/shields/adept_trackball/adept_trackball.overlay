@@ -60,11 +60,8 @@
     };
 };
 
+/* xiao_serial is a label on uart0; disabling uart0 frees the SPI0 pins. */
 &uart0 {
-    status = "disabled";
-};
-
-&xiao_serial {
     status = "disabled";
 };
 
