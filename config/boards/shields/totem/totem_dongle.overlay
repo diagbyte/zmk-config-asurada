@@ -52,20 +52,27 @@
     };
 
     /* Turns the forwarded trackball movement into HID pointer events.
-     * SCROLL/SNIPE engage off the dongle's active keymap layers (6/7). */
+     * Mirrors the original adeptBLE input-listener verbatim; only the source
+     * device differs (forwarded split input vs. the local sensor). Scroll =
+     * SCRLM(6)/SCRLH(7); Snipe = SNIPE(8) in totem.keymap. */
     trackball_listener: trackball_listener {
         compatible = "zmk,input-listener";
         device = <&trackball_split>;
-        /* Orientation for the Adept mounting; tune if X/Y feel wrong. */
-        input-processors = <&zip_xy_transform (INPUT_TRANSFORM_XY_SWAP)>;
+        input-processors = <&zip_xy_swap_mapper>;
 
-        scroller {
-            layers = <6>;   /* SCROLL layer in totem.keymap */
-            input-processors = <&zip_xy_transform (INPUT_TRANSFORM_XY_SWAP)>, <&zip_xy_to_scroll_mapper>;
+        default {
+            layers = <0>;   /* BASE */
+            process-next;
         };
-        sniper {
-            layers = <7>;   /* SNIPE layer in totem.keymap */
-            input-processors = <&zip_xy_transform (INPUT_TRANSFORM_XY_SWAP)>, <&zip_xy_scaler 1 3>;
+        scroll {
+            layers = <6 7>; /* SCRLM SCRLH */
+            input-processors = <&zip_xy_transform (INPUT_TRANSFORM_X_INVERT)>, <&zip_xy_swap_mapper>, <&zip_xy_scaler 1 10>, <&zip_xy_to_scroll_mapper>;
+            process-next;
+        };
+        snipe {
+            layers = <8>;   /* SNIPE */
+            input-processors = <&zip_xy_scaler 1 5>;
+            process-next;
         };
     };
 };
