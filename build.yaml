@@ -7,6 +7,12 @@ include:
   - board: xiao_ble//zmk
     shield: totem_dongle asurada_adapter
     artifact-name: totem_dongle
+  # Keyboard-only variant: verifies the generic CONFIG_ASURADA_TRACKBALL=n path
+  # (no trackball page/input) actually compiles. Not for flashing the trackball build.
+  - board: xiao_ble//zmk
+    shield: totem_dongle asurada_adapter
+    cmake-args: -DCONFIG_ASURADA_TRACKBALL=n
+    artifact-name: totem_dongle_notrackball
   - board: xiao_ble//zmk
     shield: totem_left
     artifact-name: totem_left

@@ -18,6 +18,6 @@ manifest:
     # Asurada dongle display module (GC9A01 + CST816S + status screen)
     - name: asurada_dongle
       remote: diagbyte
-      revision: main
+      revision: dongle-display-ui
   self:
     path: config
