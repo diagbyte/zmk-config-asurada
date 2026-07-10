@@ -110,11 +110,6 @@
         evt-type = <INPUT_EV_REL>;
         x-input-code = <INPUT_REL_X>;
         y-input-code = <INPUT_REL_Y>;
-        /* force-awake RESTORED (2026-07-10): removing it for battery made the
-         * PMW3610 fail to wake from rest through the dongle split -- the cursor
-         * stopped moving entirely (buttons, a separate kscan path, still worked).
-         * Keeping the sensor pinned in RUN is the reliable-motion trade-off; the
-         * BLE-level battery levers (LATENCY, TX) below stay. */
         force-awake;
     };
 };
