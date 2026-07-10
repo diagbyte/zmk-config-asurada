@@ -61,11 +61,13 @@
         input-processors = <&zip_xy_swap_mapper>;
 
         default {
-            /* Normal cursor on ALL keyboard layers, not just BASE -- otherwise
-             * the trackball freezes on any non-BASE layer (notably the CMK-DH
-             * toggle, which is persistent). Scroll(7,8)/Snipe(9) override below
-             * when they are the highest active layer. */
-            layers = <0 1 2 3 4 5 6>; /* BASE CMKDH NAV SYM ADJ TVP1 TVP2 */
+            /* Reverted to <0> (the working #46 value). Extending this to
+             * <0 1 2 3 4 5 6> in ad90f44 killed cursor motion on hardware even
+             * though the ZMK source suggested the base processors always run --
+             * the multi-layer default is what broke it, so keep it at BASE only.
+             * Cursor still works on every keyboard layer because layer 0 stays
+             * active underneath and the listener base processors apply. */
+            layers = <0>;   /* BASE */
             process-next;
         };
         scroll {
