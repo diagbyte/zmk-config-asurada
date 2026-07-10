@@ -65,12 +65,12 @@
             process-next;
         };
         scroll {
-            layers = <6 7>; /* SCRLM SCRLH */
+            layers = <7 8>; /* SCRLM SCRLH */
             input-processors = <&zip_xy_transform (INPUT_TRANSFORM_X_INVERT)>, <&zip_xy_swap_mapper>, <&zip_xy_scaler 1 10>, <&zip_xy_to_scroll_mapper>;
             process-next;
         };
         snipe {
-            layers = <8>;   /* SNIPE */
+            layers = <9>;   /* SNIPE */
             input-processors = <&zip_xy_scaler 1 5>;
             process-next;
         };
