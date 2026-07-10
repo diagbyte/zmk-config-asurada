@@ -293,11 +293,19 @@ display-name = "SNIPE"                             ;
                 };
 
                 colemak_dh_layer {
-display-name = "CMK-DH";
-// Colemak Mod-DH alphas. Toggle from the ADJ layer (&tog CMKDH). Only the
-// letters change; everything else is &trans so it falls through to the QWERTY
-// base (thumbs, NAV/SYM, trackball row). Toggle OFF (back to QWERTY) for the
-// Korean 두벌식 IME, which maps jamo by QWERTY key positions.
+// ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+display-name = "CMK-DH"                            ;
+// ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+// Colemak Mod-DH. Toggle from ADJ (&tog CMKDH). Non-alpha keys = &trans (fall
+// through to the QWERTY base). Toggle OFF (QWERTY) for the Korean 두벌식 IME.
+//             ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓   ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓
+//             ┃     Q     ┃     W     ┃     F     ┃     P     ┃     B     ┃   ┃     J     ┃     L     ┃     U     ┃     Y     ┃     ;     ┃
+//             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
+//             ┃     A     ┃     R     ┃     S     ┃     T     ┃     G     ┃   ┃     M     ┃     N     ┃     E     ┃     I     ┃     O     ┃
+// ┏━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┓
+// ┃           ┃     Z     ┃     X     ┃     C     ┃     D     ┃     V     ┃   ┃     K     ┃     H     ┃     ,     ┃     .     ┃     /     ┃           ┃
+// ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
+//                                     ┃           ┃           ┃           ┃   ┃           ┃           ┃           ┃
  bindings = <
                 &kp Q       &kp W       &kp F       &kp P       &kp B           &kp J       &kp L       &kp U       &kp Y       &kp SEMI
                 &mt LGUI A  &mt LALT R  &mt LCTRL S &mt LSHFT T &kp G           &kp M       &mt RSHFT N &mt RCTRL E &mt RALT I  &mt RGUI O
