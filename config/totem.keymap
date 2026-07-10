@@ -26,6 +26,7 @@
 #define SCRLM 6
 #define SCRLH 7
 #define SNIPE 8
+#define CMKDH 9
 
 &mt {
   quick-tap-ms = <100>;
@@ -109,9 +110,9 @@ display-name = "BASE"                              ;
  bindings = <
 // ╷           ╷           ╷           ╷           ╷           ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷           ╷
 
-                &kp Q       &kp W       &kp F       &kp P       &kp G           &kp J       &kp L       &kp U       &kp Y       &kp SEMI
-                &mt LGUI A  &mt LALT R  &mt LCTRL S &mt LSHFT T &kp D           &kp H       &mt RSHFT N &mt RCTRL E &mt RALT I  &mt RGUI O
-    &kp Q       &kp Z       &kp X       &kp C       &kp V       &kp B           &kp K       &kp M       &kp COMMA   &kp DOT     &kp FSLH    &kp BSLH
+                &kp Q       &kp W       &kp E       &kp R       &kp T           &kp Y       &kp U       &kp I       &kp O       &kp P
+                &mt LGUI A  &mt LALT S  &mt LCTRL D &mt LSHFT F &kp G           &kp H       &mt RSHFT J &mt RCTRL K &mt RALT L  &mt RGUI SEMI
+    &kp Q       &kp Z       &kp X       &kp C       &kp V       &kp B           &kp N       &kp M       &kp COMMA   &kp DOT     &kp FSLH    &kp BSLH
                                         &kp DEL   &lt NAV TAB   &kp SPACE       &kp RET   &lt SYM ESC   &kp BSPC
                 &mkp MB4    &mkp MB5    &mkp MCLK   &lth SCRLM RCLK   &mkp LCLK   &mto SCRLM SNIPE
                         >;
@@ -190,7 +191,7 @@ display-name = "ADJ"                               ;
  bindings = <
 // ╷           ╷           ╷           ╷           ╷           ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷           ╷
 
-                &sys_reset  &bt BT_CLR &out OUT_TOG &trans      &trans          &trans      &kp F7      &kp F8      &kp F9      &kp F12
+                &sys_reset  &bt BT_CLR &out OUT_TOG &tog CMKDH  &trans          &trans      &kp F7      &kp F8      &kp F9      &kp F12
                 &bootloader &bt BT_NXT  &trans      &trans      &trans          &trans      &kp F4      &kp F5      &kp F6      &kp F11  
     &trans      &trans      &bt BT_PRV  &trans      &trans      &trans          &trans      &kp F1      &kp F2      &kp F3      &kp F10     &trans         
                                         &trans      &trans      &trans          &trans      &trans      &trans      
@@ -288,6 +289,21 @@ display-name = "SNIPE"                             ;
     &trans      &trans      &trans      &trans      &trans      &trans          &trans      &trans      &trans      &trans      &trans      &trans
                                         &trans      &trans      &trans          &trans      &trans      &trans
                 &trans      &trans      &trans      &lth SCRLM RCLK   &trans      &to BASE
+                        >;
+                };
+
+                colemak_dh_layer {
+display-name = "CMK-DH";
+// Colemak Mod-DH alphas. Toggle from the ADJ layer (&tog CMKDH). Only the
+// letters change; everything else is &trans so it falls through to the QWERTY
+// base (thumbs, NAV/SYM, trackball row). Toggle OFF (back to QWERTY) for the
+// Korean 두벌식 IME, which maps jamo by QWERTY key positions.
+ bindings = <
+                &kp Q       &kp W       &kp F       &kp P       &kp B           &kp J       &kp L       &kp U       &kp Y       &kp SEMI
+                &mt LGUI A  &mt LALT R  &mt LCTRL S &mt LSHFT T &kp G           &kp M       &mt RSHFT N &mt RCTRL E &mt RALT I  &mt RGUI O
+    &trans      &kp Z       &kp X       &kp C       &kp D       &kp V           &kp K       &kp H       &kp COMMA   &kp DOT     &kp FSLH    &trans
+                                        &trans      &trans      &trans          &trans      &trans      &trans
+                &trans      &trans      &trans      &trans      &trans      &trans
                         >;
                 };
         };
