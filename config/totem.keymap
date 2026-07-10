@@ -108,10 +108,13 @@ display-name = "BASE"                              ;
 // ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
 //                                     ┃    DEL    ┃  NAV/TAB  ┃    SPC    ┃   ┃   ENTER   ┃  SYM/ESC  ┃   BSPC    ┃
 //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
-// trackball buttons D1-D6 (SCR·x = hold scroll / tap x):
-//   ┏━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━┓
-//   ┃   MB4    ┃   MB5    ┃   MCLK   ┃ SCR·RCLK ┃   LCLK   ┃ SCR·SNP  ┃
-//   ┗━━━━━━━━━━┻━━━━━━━━━━┻━━━━━━━━━━┻━━━━━━━━━━┻━━━━━━━━━━┻━━━━━━━━━━┛
+// trackball buttons (physical 4-top + 2-bottom; SCR·x = hold scroll / tap x):
+//   ┏━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━┓
+//   ┃   MB4    ┃   MB5    ┃   MCLK   ┃ SCR·RCLK ┃
+//   ┗━━━━━━━━━━┻━━━━━━━━━━┻━━━━━━━━━━┻━━━━━━━━━━┛
+//   ┏━━━━━━━━━━┓                     ┏━━━━━━━━━━┓
+//   ┃   LCLK   ┃                     ┃ SCR·SNP  ┃
+//   ┗━━━━━━━━━━┛                     ┗━━━━━━━━━━┛
  bindings = <
 // ╷           ╷           ╷           ╷           ╷           ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷           ╷
 
@@ -286,9 +289,12 @@ display-name = "TVP 2"                             ;
 display-name = "SCRLM"                             ;
 // SCROLL momentary (keymap layer 7): hold any trackball button and the ball
 // scrolls; tap D3 or D5 to latch into Scroll-Keep. Trackball D1-D6:
-//   ┏━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━┓
-//   ┃    ·     ┃    ·     ┃ ->SCRLK  ┃    ·     ┃ ->SCRLK  ┃    ·     ┃
-//   ┗━━━━━━━━━━┻━━━━━━━━━━┻━━━━━━━━━━┻━━━━━━━━━━┻━━━━━━━━━━┻━━━━━━━━━━┛
+//   ┏━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━┓
+//   ┃    ·     ┃    ·     ┃ ->SCRLK  ┃    ·     ┃
+//   ┗━━━━━━━━━━┻━━━━━━━━━━┻━━━━━━━━━━┻━━━━━━━━━━┛
+//   ┏━━━━━━━━━━┓                     ┏━━━━━━━━━━┓
+//   ┃ ->SCRLK  ┃                     ┃    ·     ┃
+//   ┗━━━━━━━━━━┛                     ┗━━━━━━━━━━┛
  bindings = <
                 &trans      &trans      &trans      &trans      &trans          &trans      &trans      &trans      &trans      &trans
                 &trans      &trans      &trans      &trans      &trans          &trans      &trans      &trans      &trans      &trans
@@ -302,9 +308,12 @@ display-name = "SCRLM"                             ;
 display-name = "SCRLK"                             ;
 // SCROLL-Keep (keymap layer 8): scrolling stays on hands-free; tap D4 or D6
 // to return to BASE. Trackball D1-D6:
-//   ┏━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━┓
-//   ┃    ·     ┃    ·     ┃    ·     ┃ ->BASE   ┃    ·     ┃ ->BASE   ┃
-//   ┗━━━━━━━━━━┻━━━━━━━━━━┻━━━━━━━━━━┻━━━━━━━━━━┻━━━━━━━━━━┻━━━━━━━━━━┛
+//   ┏━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━┓
+//   ┃    ·     ┃    ·     ┃    ·     ┃ ->BASE   ┃
+//   ┗━━━━━━━━━━┻━━━━━━━━━━┻━━━━━━━━━━┻━━━━━━━━━━┛
+//   ┏━━━━━━━━━━┓                     ┏━━━━━━━━━━┓
+//   ┃    ·     ┃                     ┃ ->BASE   ┃
+//   ┗━━━━━━━━━━┛                     ┗━━━━━━━━━━┛
  bindings = <
                 &trans      &trans      &trans      &trans      &trans          &trans      &trans      &trans      &trans      &trans
                 &trans      &trans      &trans      &trans      &trans          &trans      &trans      &trans      &trans      &trans
@@ -318,9 +327,12 @@ display-name = "SCRLK"                             ;
 display-name = "SNIPE"                             ;
 // SNIPE (keymap layer 9): 1/5 precision for fine aim. D4 hold=scroll /
 // tap=right-click; D6 returns to BASE. Trackball D1-D6:
-//   ┏━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━┓
-//   ┃    ·     ┃    ·     ┃    ·     ┃ SCR·RCLK ┃    ·     ┃ ->BASE   ┃
-//   ┗━━━━━━━━━━┻━━━━━━━━━━┻━━━━━━━━━━┻━━━━━━━━━━┻━━━━━━━━━━┻━━━━━━━━━━┛
+//   ┏━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━┓
+//   ┃    ·     ┃    ·     ┃    ·     ┃ SCR·RCLK ┃
+//   ┗━━━━━━━━━━┻━━━━━━━━━━┻━━━━━━━━━━┻━━━━━━━━━━┛
+//   ┏━━━━━━━━━━┓                     ┏━━━━━━━━━━┓
+//   ┃    ·     ┃                     ┃ ->BASE   ┃
+//   ┗━━━━━━━━━━┛                     ┗━━━━━━━━━━┛
  bindings = <
                 &trans      &trans      &trans      &trans      &trans          &trans      &trans      &trans      &trans      &trans
                 &trans      &trans      &trans      &trans      &trans          &trans      &trans      &trans      &trans      &trans
