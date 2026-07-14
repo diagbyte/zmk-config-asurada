@@ -30,10 +30,19 @@
 #define SNIPE 9
 
 &mt {
+  /* Matches the GEIGEIGEIST Totem original exactly (tap-preferred / 170ms /
+   * quick-tap 100 / global-quick-tap) -- verified against
+   * github.com/GEIGEIGEIST/zmk-config-totem. The a+k swallow is a known limit of
+   * that original: with no require-prior-idle-ms, holding 'a' (LGUI) ~170ms during
+   * a fast roll latched the mod (GUI+K) and ate the 'k'. The ONLY change is the
+   * added line below -- require-prior-idle-ms disables the hold whenever another
+   * key was pressed within 150ms, so mid-stream rolls are forced to plain taps.
+   * Tapping term and tap feel are unchanged from the original. */
   quick-tap-ms = <100>;
   global-quick-tap;
   flavor = "tap-preferred";
   tapping-term-ms = <170>;
+  require-prior-idle-ms = <150>;
 };
 
 / {
