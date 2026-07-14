@@ -29,21 +29,18 @@
 #define SCRLH 8
 #define SNIPE 9
 
-&mt {
-  /* Matches the GEIGEIGEIST Totem original exactly (tap-preferred / 170ms /
-   * quick-tap 100 / global-quick-tap) -- verified against
-   * github.com/GEIGEIGEIST/zmk-config-totem. The a+k swallow is a known limit of
-   * that original: with no require-prior-idle-ms, holding 'a' (LGUI) ~170ms during
-   * a fast roll latched the mod (GUI+K) and ate the 'k'. The ONLY change is the
-   * added line below -- require-prior-idle-ms disables the hold whenever another
-   * key was pressed within 150ms, so mid-stream rolls are forced to plain taps.
-   * Tapping term and tap feel are unchanged from the original. */
-  quick-tap-ms = <100>;
-  global-quick-tap;
-  flavor = "tap-preferred";
-  tapping-term-ms = <170>;
-  require-prior-idle-ms = <150>;
-};
+/* Home-row mods use POSITIONAL hold-tap (hml/hmr, defined in the behaviors block
+ * below) instead of a plain &mt. A mod fires only when the NEXT key is on the
+ * OPPOSITE hand (or a thumb): same-hand rolls (as, sd, wa, sad, ...) can never
+ * trigger GUI/ALT/CTRL/SHIFT, and a fast opposite-hand roll (a+k) stays a tap
+ * unless the key is genuinely held past the tapping term. require-prior-idle-ms
+ * additionally forces a tap mid-typing-stream. Key positions for the Totem
+ * 38-key board (+6 trackball) -- verified against totem.dtsi's matrix transform.
+ * NOTE trade-off: a same-hand shortcut (e.g. Ctrl+C = D-ctrl + C, both left)
+ * now needs the mod key HELD a beat before the letter, not fast-rolled. */
+#define KEYS_L 0 1 2 3 4 10 11 12 13 14 20 21 22 23 24 25    /* left half */
+#define KEYS_R 5 6 7 8 9 15 16 17 18 19 26 27 28 29 30 31    /* right half */
+#define THUMBS 32 33 34 35 36 37                             /* all 6 thumb keys */
 
 / {
      combos {
@@ -98,6 +95,32 @@
             tapping-term-ms = <200>;
             bindings = <&mo>, <&to>;
         };
+        // Positional home-row mods. tap-preferred = the hold only ever fires on a
+        // genuine long press (pressing another key never forces it); hold-trigger-
+        // key-positions then gates that hold to opposite-hand / thumb keys, so a
+        // same-hand neighbour press resolves instantly as a tap. 200ms term +
+        // 150ms prior-idle keep mods out of fast typing. hml = left mods (A S D F),
+        // hmr = right mods (J K L ;). Bump tapping-term-ms if mods still misfire.
+        hml: homerow_mod_left {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <200>;
+            quick-tap-ms = <175>;
+            require-prior-idle-ms = <150>;
+            hold-trigger-key-positions = <KEYS_R THUMBS>;
+            bindings = <&kp>, <&kp>;
+        };
+        hmr: homerow_mod_right {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <200>;
+            quick-tap-ms = <175>;
+            require-prior-idle-ms = <150>;
+            hold-trigger-key-positions = <KEYS_L THUMBS>;
+            bindings = <&kp>, <&kp>;
+        };
     };
 
         keymap {
@@ -128,7 +151,7 @@ display-name = "BASE"                              ;
 // ╷           ╷           ╷           ╷           ╷           ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷           ╷
 
                 &kp Q       &kp W       &kp E       &kp R       &kp T           &kp Y       &kp U       &kp I       &kp O       &kp P
-                &mt LGUI A  &mt LALT S  &mt LCTRL D &mt LSHFT F &kp G           &kp H       &mt RSHFT J &mt RCTRL K &mt RALT L  &mt RGUI SEMI
+                &hml LGUI A &hml LALT S &hml LCTRL D &hml LSHFT F &kp G          &kp H       &hmr RSHFT J &hmr RCTRL K &hmr RALT L &hmr RGUI SEMI
     &kp Q       &kp Z       &kp X       &kp C       &kp V       &kp B           &kp N       &kp M       &kp COMMA   &kp DOT     &kp FSLH    &kp BSLH
                                         &kp DEL   &lt NAV TAB   &kp SPACE       &kp RET   &lt SYM ESC   &kp BSPC
                 &mkp MB4    &mkp MB5    &mkp MCLK   &lth SCRLM RCLK   &mkp LCLK   &mto SCRLM SNIPE
@@ -154,7 +177,7 @@ display-name = "CMK-DH"                            ;
 //                                     ┃    DEL    ┃  NAV/TAB  ┃    SPC    ┃   ┃   ENTER   ┃  SYM/ESC  ┃   BSPC    ┃
  bindings = <
                 &kp Q       &kp W       &kp F       &kp P       &kp B           &kp J       &kp L       &kp U       &kp Y       &kp SEMI
-                &mt LGUI A  &mt LALT R  &mt LCTRL S &mt LSHFT T &kp G           &kp M       &mt RSHFT N &mt RCTRL E &mt RALT I  &mt RGUI O
+                &hml LGUI A &hml LALT R &hml LCTRL S &hml LSHFT T &kp G          &kp M       &hmr RSHFT N &hmr RCTRL E &hmr RALT I &hmr RGUI O
     &kp Q       &kp Z       &kp X       &kp C       &kp D       &kp V           &kp K       &kp H       &kp COMMA   &kp DOT     &kp FSLH    &kp BSLH
                                         &kp DEL   &lt NAV TAB   &kp SPACE       &kp RET   &lt SYM ESC   &kp BSPC
                 &trans      &trans      &trans      &trans      &trans      &trans
