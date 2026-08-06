@@ -28,6 +28,7 @@
 #define SCRLM 7
 #define SCRLH 8
 #define SNIPE 9
+#define TIME  10
 
 &mt {
   /* Reverted from the positional hml/hmr experiment back to a plain mod-tap, per
@@ -230,7 +231,7 @@ display-name = "ADJ"                               ;
  bindings = <
 // ╷           ╷           ╷           ╷           ╷           ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷           ╷
 
-                &sys_reset  &bt BT_CLR &out OUT_TOG &tog CMKDH  &trans          &trans      &kp F7      &kp F8      &kp F9      &kp F12
+                &sys_reset  &bt BT_CLR &out OUT_TOG &tog CMKDH  &to TIME        &trans      &kp F7      &kp F8      &kp F9      &kp F12
                 &bootloader &bt BT_NXT  &trans      &trans      &trans          &trans      &kp F4      &kp F5      &kp F6      &kp F11  
     &trans      &trans      &bt BT_PRV  &trans      &trans      &trans          &trans      &kp F1      &kp F2      &kp F3      &kp F10     &trans         
                                         &trans      &trans      &trans          &trans      &trans      &trans      
@@ -346,6 +347,21 @@ display-name = "SNIPE"                             ;
     &trans      &trans      &trans      &trans      &trans      &trans          &trans      &trans      &trans      &trans      &trans      &trans
                                         &trans      &trans      &trans          &trans      &trans      &trans
                 &trans      &trans      &trans      &lth SCRLM RCLK   &trans      &to BASE
+                        >;
+                };
+
+                time_layer {
+display-name = "TIME"                              ;
+// TIME (keymap layer 10): opens the dongle's RTC editor. Every key is &none so
+// nothing reaches the host while the clock is being set; the display module reads
+// key POSITIONS, not keycodes -- 2/12 = value up/down, 11/13 = previous/next field,
+// 35 (right thumb, RET) writes the RTC and &to BASE leaves the layer.
+ bindings = <
+                &none       &none       &none       &none       &none           &none       &none       &none       &none       &none
+                &none       &none       &none       &none       &none           &none       &none       &none       &none       &none
+    &none       &none       &none       &none       &none       &none           &none       &none       &none       &none       &none       &none
+                                        &none       &none       &none           &to BASE    &none       &none
+                &none       &none       &none       &none       &none       &none
                         >;
                 };
         };
