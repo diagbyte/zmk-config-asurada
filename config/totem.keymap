@@ -366,6 +366,14 @@ display-name = "TIME"                              ;
 //   minute and press SAVE on the tick to be second-accurate.
 //   The year matters even though the clock page does not show it -- the weekday
 //   is computed from the full date.
+//
+// Why &none and NOT &trans: ZMK raises zmk_position_state_changed BEFORE any
+// binding is consulted -- keymap.c is just another subscriber to that event --
+// so the display sees every press whatever is bound. &none then returns
+// ZMK_BEHAVIOR_OPAQUE (0), which the event manager treats as BUBBLE, so the
+// event still reaches the display's listener. &trans returns TRANSPARENT and
+// falls through to BASE, which would type "esdf" into the host while you set
+// the clock.
 //             ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓   ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓
 //             ┃           ┃           ┃  VALUE +  ┃           ┃           ┃   ┃           ┃           ┃           ┃           ┃           ┃
 //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
